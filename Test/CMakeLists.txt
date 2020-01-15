@@ -21,4 +21,10 @@
 file(GLOB SRC *.cpp)
 file(GLOB HDR *.h)
 
-add_executable(Test catch/catch.hpp ${SRC} ${HDR})
+set(ALL_SOURCE
+  catch/catch.hpp 
+  ${SRC} 
+  ${HDR}
+)
+
+add_executable(Test ${ALL_SOURCE})
