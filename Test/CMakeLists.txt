@@ -22,7 +22,7 @@ file(GLOB SRC *.cpp)
 file(GLOB HDR *.h)
 
 set(ALL_SOURCE
-  Catch/catch.hpp 
+  catch/catch.hpp 
   ${SRC} 
   ${HDR}
 )
