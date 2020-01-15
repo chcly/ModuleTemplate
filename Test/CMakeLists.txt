@@ -2,7 +2,6 @@
 #
 #   Copyright (c) 2019 Charles Carley.
 #
-# ------------------------------------------------------------------------------
 #   This software is provided 'as-is', without any express or implied
 # warranty. In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -19,13 +18,7 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.0)
-project(Template)
+file(GLOB SRC *.cpp)
+file(GLOB HDR *.h)
 
-set(CMAKE_MODULE_PATH 
-    ${Template_SOURCE_DIR}/CMake
-)
-include(Configure)
-subdirs(CMake)
-subdirs(Source)
-subdirs(Test)
+add_executable(Test catch/catch.hpp ${SRC} ${HDR})
