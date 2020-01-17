@@ -40,6 +40,5 @@ endif()
 add_custom_command(TARGET 
     ${TestTargetName} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TestTargetName}> ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
-    COMMAND ECHO "Running test ==> " $<TARGET_FILE_NAME:${TestTargetName}>
     COMMAND ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
 )
