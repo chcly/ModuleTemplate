@@ -1,8 +1,6 @@
 # -----------------------------------------------------------------------------
-#
 #   Copyright (c) 2019 Charles Carley.
 #
-# ------------------------------------------------------------------------------
 #   This software is provided 'as-is', without any express or implied
 # warranty. In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -22,10 +20,25 @@
 cmake_minimum_required(VERSION 3.0)
 project(Template)
 
-set(CMAKE_MODULE_PATH 
-    ${Template_SOURCE_DIR}/CMake
-)
-include(Configure)
-subdirs(CMake)
+
+
+
+if (Template_ExternalTarget)
+    set(TargetFolders ${Template_TargetFolders})
+    set(TargetName    ${Template_TargetName})
+    set(TargetGroup   ${Template_TargetGroup})
+else()
+    subdirs(CMake)
+    set(TargetFolders FALSE)
+    set(TargetName Template)
+    unset(TargetGroup )
+endif()
+
+option(Template_BUILD_TEST "Build the template test program." OFF)
+
+
 subdirs(Source)
-subdirs(Test)
+
+if (Template_BUILD_TEST)
+    subdirs(Test)
+endif()

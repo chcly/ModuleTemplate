@@ -18,13 +18,28 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-file(GLOB SRC *.cpp)
-file(GLOB HDR *.h)
+set(TestTargetName ${TargetName}Test)
 
-set(ALL_SOURCE
-  catch/catch.hpp 
-  ${SRC} 
-  ${HDR}
+set(TestTarget_SOURCE
+    catch/catch.hpp 
+    catch/catch.cpp
+    Test1.cpp
 )
 
-add_executable(Test ${ALL_SOURCE})
+include_directories(. catch)
+
+add_executable(
+    ${TestTargetName}
+    ${TestTarget_SOURCE}
+)
+
+if (TargetFolders)
+    set_target_properties(${TargetName} PROPERTIES FOLDER "${TargetGroup}")
+endif()
+
+add_custom_command(TARGET 
+    ${TestTargetName} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TestTargetName}> ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
+    COMMAND ECHO "Running test ==> " $<TARGET_FILE_NAME:${TestTargetName}>
+    COMMAND ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
+)

@@ -1,4 +1,4 @@
-#include "Macro.h"
+#include "catch/defines.h"
 
 
 TEST_CASE("Test1")

@@ -34,6 +34,7 @@ if (MSVC)
         ${PY_FILES}
         ${BAT_FILES}
         ../.clang-format
+        ../.github/workflows/autobuild.yml
     )
 	source_group("CMake"        FILES ${CM_FILES})
 	source_group("Markdown"     FILES ${MD_FILES})

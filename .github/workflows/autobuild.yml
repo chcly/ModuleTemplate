@@ -9,8 +9,6 @@ jobs:
     steps:
      - uses: actions/checkout@v1
      - name: Configure
-       run: cmake .
+       run: cmake -DTemplate_BUILD_TEST=ON .
      - name: Make
        run: make
-     - name: RunTests
-       run: ./Test/Test

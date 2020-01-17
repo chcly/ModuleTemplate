@@ -1,8 +1,6 @@
 # -----------------------------------------------------------------------------
-#
 #   Copyright (c) 2019 Charles Carley.
 #
-# ------------------------------------------------------------------------------
 #   This software is provided 'as-is', without any express or implied
 # warranty. In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -19,8 +17,14 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-set(TargetName TemplateTest)
+set(TargetName_SOURCE 
+    Main.cpp)
 
+add_executable(
+    ${TargetName} 
+    ${TargetName_SOURCE}
+)
 
-set(SOURCE Main.cpp)
-add_executable(${TargetName} ${SOURCE})
+if (TargetFolders)
+    set_target_properties(${TargetName} PROPERTIES FOLDER "${TargetGroup}")
+endif()
