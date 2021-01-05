@@ -18,9 +18,9 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-
 # Utility project to organize build scripts better
 if (MSVC)
+
     file(GLOB CM_FILES *.cmake)
     file(GLOB IN_FILES *.in)
     file(GLOB MD_FILES ../*.md)
@@ -34,21 +34,17 @@ if (MSVC)
         ${PY_FILES}
         ${BAT_FILES}
         ../.clang-format
-        ../.github/workflows/autobuild.yml
+        #../.github/workflows/autobuild.yml
     )
-	source_group("CMake"        FILES ${CM_FILES})
-	source_group("Markdown"     FILES ${MD_FILES})
-	source_group("Include"      FILES ${IN_FILES})
+
+    source_group("CMake"        FILES ${CM_FILES})
+    source_group("Markdown"     FILES ${MD_FILES})
+    source_group("Include"      FILES ${IN_FILES})
     source_group("Python"       FILES ${PY_FILES})
     source_group("Batch"        FILES ${BC_FILES})
 
-    set_source_files_properties(
-        ${CMAKE_FILES} 
-        PROPERTIES 
-        VS_TOOL_OVERRIDE 
-        "None"
-    )
-
+    set_source_files_properties(${CMAKE_FILES}  PROPERTIES  VS_TOOL_OVERRIDE  "None")
     add_custom_target(ALL_CMAKE ALL SOURCES ${CMAKE_FILES})
+    set_target_properties(ALL_CMAKE PROPERTIES FOLDER "CMakePredefinedTargets")
 
 endif()

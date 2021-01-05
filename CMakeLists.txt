@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-#   Copyright (c) 2019 Charles Carley.
+#   Copyright (c) Charles Carley.
 #
 #   This software is provided 'as-is', without any express or implied
 # warranty. In no event will the authors be held liable for any damages
@@ -19,8 +19,12 @@
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
 project(Template)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-
+set(CMAKE_MODULE_PATH 
+    ${CMAKE_SOURCE_DIR}/CMake
+)
+include(Configure)
 
 
 if (Template_ExternalTarget)
