@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 #
-#   Copyright (c) 2019 Charles Carley.
+#   Copyright (c) Charles Carley.
 #
 #   This software is provided 'as-is', without any express or implied
 # warranty. In no event will the authors be held liable for any damages
@@ -18,33 +18,45 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-# Utility project to organize build scripts better
+
 if (MSVC)
 
-    file(GLOB CM_FILES *.cmake)
-    file(GLOB IN_FILES *.in)
-    file(GLOB MD_FILES ../*.md)
-    file(GLOB PY_FILES ../*.py)
-    file(GLOB BC_FILES ../*.bat)
-
-    set(CMAKE_FILES
-        ${CM_FILES}
-        ${IN_FILES}
-        ${MD_FILES}
-        ${PY_FILES}
-        ${BAT_FILES}
-        ../.clang-format
-        #../.github/workflows/autobuild.yml
+    set(FilePatterns
+        CMake:*.cmake
+        CMake:../CMakeLists.txt
+        Include:*.in
+        BatchScript:*.bat
+        BatchScript:*.sh
+        Configuration:*.config
+        Configuration:*.conf
+        Configuration:*.cfg
+        Configuration:*.ini
+        Json:*.json
+        Python:*.py
+        CLang:../*.clang-format
+        GitHub:../.github/workflows/*.yml
     )
+    set(ProjectFiles )
 
-    source_group("CMake"        FILES ${CM_FILES})
-    source_group("Markdown"     FILES ${MD_FILES})
-    source_group("Include"      FILES ${IN_FILES})
-    source_group("Python"       FILES ${PY_FILES})
-    source_group("Batch"        FILES ${BC_FILES})
+    foreach(PatternString ${FilePatterns})
+        string(FIND       ${PatternString} ":" SplitIdx)
+        string(LENGTH     ${PatternString}  Strlen)
+        string(SUBSTRING  ${PatternString} 0 ${SplitIdx} Group)
+        string(SUBSTRING  ${PatternString} ${SplitIdx} ${Strlen} Pattern)
+        string(REPLACE    ":" "" Pattern ${Pattern})
 
-    set_source_files_properties(${CMAKE_FILES}  PROPERTIES  VS_TOOL_OVERRIDE  "None")
-    add_custom_target(ALL_CMAKE ALL SOURCES ${CMAKE_FILES})
+        file(GLOB PatternFiles ${Pattern})
+
+        if (PatternFiles)
+            source_group(${Group} FILES ${PatternFiles})
+            list(APPEND ProjectFiles ${PatternFiles})
+        endif()
+    endforeach()
+
+    set(CMAKE_FILES ${ProjectFiles})
+    set_source_files_properties(${ProjectFiles} PROPERTIES VS_TOOL_OVERRIDE "None")
+
+    add_custom_target(ALL_CMAKE ALL SOURCES ${ProjectFiles})
     set_target_properties(ALL_CMAKE PROPERTIES FOLDER "CMakePredefinedTargets")
 
 endif()
