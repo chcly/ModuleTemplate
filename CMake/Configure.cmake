@@ -20,3 +20,9 @@
 # ------------------------------------------------------------------------------
 include(StaticRuntime)
 set_static_runtime()
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+option(Template_BUILD_TEST "Build the template test program." OFF)
+
+
+

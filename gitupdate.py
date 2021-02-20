@@ -1,14 +1,13 @@
 import sys, os, subprocess
 
-
 def trim(line):
     line = line.replace("\t", "")
     line = line.replace("\n", "")
     line = line.replace(" ", "")
     return line
 
-
 def execString(val):
+
     args = val.split(" ")
     if len(args) > 0:
         try:
@@ -22,12 +21,10 @@ def initModules():
     execString("git submodule init")
     execString("git submodule update --init --merge")
 
-
 def updateModules(path):
     print("==> " + path)
     execString("git checkout master")
     execString("git pull")
-
 
 def main():
     initModules()
@@ -55,7 +52,6 @@ def main():
 
             updateModules(path)
             os.chdir(cur_dir)
-
 
 if __name__ == "__main__":
     main()
