@@ -12,3 +12,6 @@ jobs:
        run: cmake -DTemplate_BUILD_TEST=ON .
      - name: Make
        run: make
+     - name: TestProject
+       run: ./Source/Template > out.ans && diff out.ans Test/inp.ans
+       
