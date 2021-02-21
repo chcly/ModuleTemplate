@@ -1,36 +1,29 @@
 name: Build With CMake
 
 on: [push]
-env:
-  BUILD_TYPE: Debug
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
      - uses: actions/checkout@v2
 
-     - name: Git Initialize Submodules
-       run: git submodule init
+     - name: Git Initialize Sub-Modules
+       run: git submodule update --init
 
-     - name: Git Clone Submodules
+     - name: Git Clone Sub-Modules
        run: git submodule update --init --merge
 
-     - name: Create Build Environment
-       run: cmake -E make_directory ${{github.workspace}}/build
-
-     - name: Configure CMake
-       shell: bash
-       working-directory: ${{github.workspace}}/build
-       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DTemplate_BUILD_TEST=ON
+     - name: Configure
+       run: cmake -DTemplate_BUILD_TEST=ON .
 
      - name: Build
-       working-directory: ${{github.workspace}}/build
-       shell: bash
-       run: cmake --build . --config $BUILD_TYPE
+       run: make
 
-     - name: TestProject
-       working-directory: ${{github.workspace}}/build
+     - name: Test Output
        run: ./Source/Template > out.ans && diff out.ans Test/inp.ans
+       
+     - name: Unit Test
+       run: ./Test/TemplateTest
        
