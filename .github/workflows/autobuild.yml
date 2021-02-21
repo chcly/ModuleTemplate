@@ -1,7 +1,6 @@
 name: Build With CMake
 
 on: [push]
-
 env:
   BUILD_TYPE: Debug
 
