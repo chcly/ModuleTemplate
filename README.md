@@ -17,6 +17,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 ## CMakeLists.txt - in larger project
 
+
 set(Utils_ExternalTarget  TRUE)
 set(Utils_TargetName      UtilsAlias)
 set(Utils_TargetGroup     VisualStudioFolderName)
@@ -34,32 +35,23 @@ if (Utils_ExternalTarget)
     set(TargetName    ${Utils_TargetName})
     set(TargetGroup   ${Utils_TargetGroup})
 else()
-
     # Settings for the standalone project
-  
+
     set(TargetFolders FALSE)
-    set(TargetName Utils)
-    unset(TargetGroup )
-
-    set(Utils_INCLUDE         internal/path/to/utils/module)
-    set(Utils_LIBRARY         ${TargetName})
-
+    set(TargetName    Utils)
+    set(Utils_INCLUDE internal/path/to/utils/module)
+    set(Utils_LIBRARY ${TargetName})
 endif()
-
 
 
 ## When building the library 
 
-
 add_library(${TargetName} ... )
-
 if (TargetFolders)
-
     set_target_properties(
         ${TargetName} 
         PROPERTIES FOLDER "${TargetGroup}"
     )
-
 endif()
 
 
@@ -86,7 +78,7 @@ gitupdate.bat
 
 ## Testing
 
-The template also contains the initial setup for testing the standalone module either using GitHub actions or with Jenkins.
+The testing directory is setup to work with [googletest](https://github.com/google/googletest). As well as the initial setup for testing the standalone module either using GitHub actions or with Jenkins.
 
 ## Building
 

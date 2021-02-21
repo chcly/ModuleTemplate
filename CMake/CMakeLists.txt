@@ -34,6 +34,7 @@ if (MSVC)
         Jenkins:../Jenkinsfile
         Json:*.json
         Python:*.py
+        Markdown:../*.md
         CLang:../*.clang-format
         GitHub:../.github/workflows/*.yml
     )
