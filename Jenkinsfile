@@ -4,6 +4,14 @@ pipeline {
         GenericTrigger(causeString: 'Relay Push Service',  token: 'Template.Build')
     }
     stages {
+    
+        stage('Update Submodules') {
+            steps {
+                sh script: 'git submodule init'
+                sh script: 'git submodule update --init --merge'
+            }
+        }
+
         stage('Build Project') {
 
             steps {
@@ -11,6 +19,7 @@ pipeline {
                 sh script: 'make'
             }
         }
+
         stage('Test Project') {
             steps {
                 sh script: './Source/Template > out.ans'

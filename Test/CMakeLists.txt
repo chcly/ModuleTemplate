@@ -21,24 +21,17 @@
 set(TestTargetName ${TargetName}Test)
 
 set(TestTarget_SOURCE
-    catch/catch.hpp 
-    catch/catch.cpp
     Test1.cpp
 )
 
-include_directories(. catch)
+include_directories(. googletest)
 
 add_executable(
     ${TestTargetName}
     ${TestTarget_SOURCE}
 )
+target_link_libraries(${TestTargetName} gtest_main)
 
 if (TargetFolders)
     set_target_properties(${TargetName} PROPERTIES FOLDER "${TargetGroup}")
 endif()
-
-add_custom_command(TARGET 
-    ${TestTargetName} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TestTargetName}> ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
-    COMMAND ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
-)

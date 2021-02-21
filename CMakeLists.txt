@@ -21,5 +21,10 @@ endif()
 
 subdirs(Source)
 if (Template_BUILD_TEST)
+
+    set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+    set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+    subdirs(Test/googletest)
+
     subdirs(Test)
 endif()

@@ -1,8 +1,12 @@
-#include "catch/defines.h"
+#include "gtest/gtest.h"
 
 
-TEST_CASE("Test1")
+GTEST_TEST(Test1, AlwaysTrue)
 {
     EXPECT_EQ(1, 1);
-   
+}
+
+GTEST_TEST(Test1, AlwaysFalse)
+{
+    EXPECT_NE(1, 0);
 }
