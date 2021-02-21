@@ -35,3 +35,14 @@ target_link_libraries(${TestTargetName} gtest_main)
 if (TargetFolders)
     set_target_properties(${TargetName} PROPERTIES FOLDER "${TargetGroup}")
 endif()
+
+
+if (Template_AUTO_RUN_TEST)
+
+    add_custom_command(TARGET 
+        ${TestTargetName} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TestTargetName} > ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
+        COMMAND ${CMAKE_BINARY_DIR}/$<TARGET_FILE_NAME:${TestTargetName}>
+        )
+        
+endif()

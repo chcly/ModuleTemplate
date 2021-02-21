@@ -15,7 +15,7 @@ pipeline {
         stage('Build Project') {
 
             steps {
-                sh script: 'cmake -DTemplate_BUILD_TEST=ON.'
+                sh script: 'cmake -DTemplate_BUILD_TEST=ON -DTemplate_AUTO_RUN_TEST=ON .'
                 sh script: 'make'
             }
         }
@@ -24,7 +24,6 @@ pipeline {
             steps {
                 sh script: './Source/Template > out.ans'
                 sh script: 'diff out.ans Test/inp.ans'
-                sh script: './Test/TemplateTest'
             }
         }
 
