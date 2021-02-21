@@ -7,7 +7,7 @@ pipeline {
     
         stage('Update Submodules') {
             steps {
-                sh script: 'git submodule init'
+                sh script: 'git submodule update --init'
             }
         }
 
