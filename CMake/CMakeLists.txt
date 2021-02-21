@@ -31,6 +31,7 @@ if (MSVC)
         Configuration:*.conf
         Configuration:*.cfg
         Configuration:*.ini
+        Jenkins:../Jenkinsfile
         Json:*.json
         Python:*.py
         CLang:../*.clang-format
