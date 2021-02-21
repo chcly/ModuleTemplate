@@ -1,6 +1,6 @@
 # Template
 
-This is a template repo (insert  description here).
+A sub-module template repository.
 
 Its purpose is to define the initial project structure for sub-modules. A sub-module should be able to stand on its own, or included in larger projects as a component piece.
 
@@ -8,7 +8,7 @@ If the module itself requires extra dependencies then they should be included in
 
 if `${PROJECT}_ExternalTarget` is false then the module should be built as a standalone project.
 
-Dependencies should adhere to the same naming strategy to keep everything consistent. Sub-modules should define the same include and library  variables relative to the `${PROJECT}_ExternalTarget` variable.
+Dependencies should adhere to the same naming strategy to keep everything consistent. Sub-modules should define the same include and library variables relative to the `${PROJECT}_ExternalTarget` variable.
 
 For example:
 
@@ -41,6 +41,8 @@ else()
     set(TargetName Utils)
     unset(TargetGroup )
 
+    set(Utils_INCLUDE         internal/path/to/utils/module)
+    set(Utils_LIBRARY         ${TargetName})
 
 endif()
 
@@ -68,21 +70,38 @@ include_directories(${Utils_INCLUDE})
 add_executable(HelloWorld main.cpp)
 
 target_link_libraries(HelloWorld  ${Utils_LIBRARY})
-
-
 ```
 
+## Sub-modules
 
+The files [gitupdate.py](gitupdate.py) or [gitupdate.bat](gitupdate.bat) help automate initial cloning and with keeping the modules up to date.
 
-
-
-## Building
-Building with CMake
+Once this project has been cloned. The following command will initialize any external modules.
 
 ```txt
+python gitupdate.py 
+...
+gitupdate.bat 
+```
+
+## Testing
+
+The template also contains the initial setup for testing the standalone module either using GitHub actions or with Jenkins.
+
+## Building
+
+Building with CMake and Make
+
+```sh
 mkdir build
 cd build
 cmake ..
+
+make
 ```
 
+Optional defines.
 
+| Option              | Description             | Default |
+|:--------------------|:------------------------|:--------|
+| Template_BUILD_TEST | Build the test program. | OFF     |
