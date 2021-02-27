@@ -5,7 +5,6 @@ project(Template)
 list(APPEND CMAKE_MODULE_PATH  ${Template_SOURCE_DIR}/CMake)
 include(Configure)
 
-
 if (Template_ExternalTarget)
 
     set(TargetFolders ${Template_TargetFolders})
