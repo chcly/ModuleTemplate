@@ -33,7 +33,7 @@ add_executable(
 target_link_libraries(${TestTargetName} gtest_main)
 
 if (TargetFolders)
-    set_target_properties(${TargetName} PROPERTIES FOLDER "${TargetGroup}")
+    set_target_properties(${TestTargetName} PROPERTIES FOLDER "${TargetGroup}")
 endif()
 
 

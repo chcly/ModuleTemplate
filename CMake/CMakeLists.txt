@@ -18,11 +18,10 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-
-if (MSVC)
-
+if (MSVC OR USING_EMSCRIPTEN)
     set(FilePatterns
         CMake:*.cmake
+        CMake\\Modules:Modules/*.cmake
         CMake:../CMakeLists.txt
         Include:*.in
         BatchScript:*.bat
@@ -60,5 +59,4 @@ if (MSVC)
 
     add_custom_target(ALL_CMAKE ALL SOURCES ${ProjectFiles})
     set_target_properties(ALL_CMAKE PROPERTIES FOLDER "CMakePredefinedTargets")
-
 endif()

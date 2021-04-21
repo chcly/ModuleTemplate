@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(Template)
 
 # Set the module path to include scripts
-list(APPEND CMAKE_MODULE_PATH  ${Template_SOURCE_DIR}/CMake)
+list(APPEND CMAKE_MODULE_PATH  ${Template_SOURCE_DIR}/CMake ${Template_SOURCE_DIR}/CMake/Modules)
 include(Configure)
 
 if (Template_ExternalTarget)
@@ -15,18 +15,21 @@ else()
 
     set(TargetFolders FALSE)
     set(TargetName Template)
+    set(TargetGroup )
 
     set(Template_INCLUDE  ${Template_SOURCE_DIR}/Source)
     set(Template_LIBRARY  ${TargetName})
-
 endif()
 
 subdirs(Source)
 
 if (Template_BUILD_TEST)
-    set(BUILD_GMOCK   OFF CACHE BOOL "" FORCE)
-    set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+    add_subdirectory(${GTEST_DIR})
+    set(TargetGroup Units)
+    if (TargetFolders)
+        set_target_properties(gtest_main PROPERTIES FOLDER "${TargetGroup}")
+        set_target_properties(gtest      PROPERTIES FOLDER "${TargetGroup}")
+    endif()
 
-    subdirs(Test/googletest)
     subdirs(Test)
 endif()

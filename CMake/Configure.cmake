@@ -24,3 +24,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 option(Template_BUILD_TEST     "Build the unit test program." ON)
 option(Template_AUTO_RUN_TEST  "Automatically run the test program." OFF)
+
+
+set(BUILD_GMOCK   OFF CACHE BOOL "" FORCE)
+set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+set(GTEST_DIR     ${Template_SOURCE_DIR}/Test/googletest)
+set(GTEST_INCLUDE ${Template_SOURCE_DIR}/Test/googletest/googletest/include)
+set(GTEST_LIBRARY gtest_main)
+
