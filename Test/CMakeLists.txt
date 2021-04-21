@@ -24,13 +24,19 @@ set(TestTarget_SOURCE
     Test1.cpp
 )
 
-include_directories(. googletest)
+set(ABSOLUTE_TEST_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/TestDirectory.h.in
+	${CMAKE_CURRENT_BINARY_DIR}/TestDirectory.h
+)
+
+include_directories(. ${GTEST_INCLUDE} ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(
     ${TestTargetName}
     ${TestTarget_SOURCE}
 )
-target_link_libraries(${TestTargetName} gtest_main)
+target_link_libraries(${TestTargetName} ${GTEST_LIBRARY})
 
 if (TargetFolders)
     set_target_properties(${TestTargetName} PROPERTIES FOLDER "${TargetGroup}")
@@ -45,4 +51,11 @@ if (Template_AUTO_RUN_TEST)
         COMMAND  $<TARGET_FILE:${TestTargetName}>
     )
         
+    set_target_properties(
+        ${TestTargetName} 
+        PROPERTIES 
+        VS_DEBUGGER_WORKING_DIRECTORY  
+        ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+
 endif()
