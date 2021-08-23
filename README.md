@@ -1,12 +1,8 @@
 # Template
 
-A sub-module template repository.
+This template defines the CMake layout for a stand-alone / embedded project. The primary purpose for this structure is to have sub-modules that stand on their own, or included into larger projects as a component piece. If the module itself requires extra dependencies then they should be included into the module as sub-modules. 
 
-Its purpose is to define the initial project structure for sub-modules. A sub-module should be able to stand on its own, or included in larger projects as a component piece.
-
-If the module itself requires extra dependencies then they should be included into the module as sub-modules. The `${PROJECT}_ExternalTarget` variable is used to determine whether or not to compile dependencies locally or have them resolved later in the larger project.
-
-if `${PROJECT}_ExternalTarget` is false then the module should be built as a standalone project.
+The `${PROJECT}_ExternalTarget` variable is used to determine whether or not to compile dependencies locally or have them resolved later in the larger project. If `${PROJECT}_ExternalTarget` is false then the module should be built as a standalone project. 
 
 Dependencies should adhere to the same naming strategy to keep everything consistent. Sub-modules should define the same include and library variables relative to the `${PROJECT}_ExternalTarget` variable.
 
@@ -16,7 +12,6 @@ For example:
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 ## CMakeLists.txt - in larger project
-
 
 set(Utils_ExternalTarget  TRUE)
 set(Utils_TargetName      UtilsAlias)
@@ -66,7 +61,7 @@ target_link_libraries(HelloWorld  ${Utils_LIBRARY})
 
 ## Sub-modules
 
-The files [gitupdate.py](gitupdate.py) or [gitupdate.bat](gitupdate.bat) help automate initial cloning and with keeping the modules up to date.
+The files [gitupdate.py](gitupdate.py) or [gitupdate.bat](gitupdate.bat) help automate initial cloning.
 
 Once this project has been cloned. The following command will initialize any external modules.
 
@@ -75,6 +70,8 @@ python gitupdate.py
 ...
 gitupdate.bat 
 ```
+
+`gitupdate.py` will also update sub-modules to the latest head. 
 
 ## Testing
 
