@@ -13,7 +13,7 @@ if (Template_ExternalTarget)
 else()
     subdirs(CMake)
 
-    set(TargetFolders FALSE)
+    set(TargetFolders TRUE)
     set(TargetName Template)
     set(TargetGroup )
 
@@ -21,7 +21,7 @@ else()
     set(Template_LIBRARY  ${TargetName})
 endif()
 
-subdirs(Source)
+add_subdirectory(Source)
 
 if (Template_BUILD_TEST)
     add_subdirectory(${GTEST_DIR})
@@ -31,5 +31,5 @@ if (Template_BUILD_TEST)
         set_target_properties(gtest      PROPERTIES FOLDER "${TargetGroup}")
     endif()
 
-    subdirs(Test)
+    add_subdirectory(Test)
 endif()
