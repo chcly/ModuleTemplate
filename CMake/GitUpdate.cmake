@@ -18,26 +18,47 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 # ------------------------------------------------------------------------------
-include(GitUpdate)
-if (NOT GitUpdate_SUCCESS)
-    return()
+set(TestFile ${CMAKE_SOURCE_DIR}/Test/googletest/CMakeLists.txt)
+set(GitUpdate_SUCCESS FALSE)
+
+# Attempts to pull submodules with python or git.
+find_package(Python COMPONENTS Interpreter)
+
+if(Python_Interpreter_FOUND)
+
+	if (NOT EXISTS ${TestFile})
+		execute_process(COMMAND ${Python_EXECUTABLE} 
+				${CMAKE_SOURCE_DIR}/gitupdate.py
+				WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		)
+	endif()
+
+
+	if (EXISTS ${TestFile})
+		set(GitUpdate_SUCCESS TRUE)
+	endif()
+
+else()
+
+	find_package(Git)
+
+	if (GIT_FOUND)
+		if (NOT EXISTS ${TestFile})
+			execute_process(COMMAND ${GIT_EXECUTABLE} 
+					submodule update --init
+					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+			)
+		endif()
+		if (EXISTS ${TestFile})
+			set(GitUpdate_SUCCESS TRUE)
+		endif()
+	endif()
 endif()
 
-include(StaticRuntime)
-set_static_runtime()
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-option(Template_BUILD_TEST     "Build the unit test program." ON)
-option(Template_AUTO_RUN_TEST  "Automatically run the test program." OFF)
-
-
-set(BUILD_GMOCK   OFF CACHE BOOL "" FORCE)
-set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
-set(GTEST_DIR     ${Template_SOURCE_DIR}/Test/googletest)
-set(GTEST_INCLUDE ${Template_SOURCE_DIR}/Test/googletest/googletest/include)
-set(GTEST_LIBRARY gtest_main)
-
-
-
-
-set(Configure_SUCCEEDED TRUE)
+if (NOT GitUpdate_SUCCESS)
+	message("")
+	message("GitUpdate: Was unable to automatically pull required submodules.")
+	message("Please manually invoke: ")
+	message("git submodule update --init")
+endif()
