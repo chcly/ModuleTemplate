@@ -91,7 +91,8 @@ make
 
 Optional defines.
 
-| Option                 | Description                         | Default |
-|:-----------------------|:------------------------------------|:-------:|
-| Template_BUILD_TEST    | Build the unit test program.        |   OFF   |
-| Template_AUTO_RUN_TEST | Automatically run the test program. |   OFF   |
+| Option                      | Description                                          | Default |
+|:----------------------------|:-----------------------------------------------------|:-------:|
+| Template_BUILD_TEST         | Build the unit test program.                         |   ON    |
+| Template_AUTO_RUN_TEST      | Automatically run the test program.                  |   OFF   |
+| Template_USE_STATIC_RUNTIME | Build with the MultiThreaded(Debug) runtime library. |   On    |
