@@ -95,4 +95,4 @@ Optional defines.
 |:----------------------------|:-----------------------------------------------------|:-------:|
 | Template_BUILD_TEST         | Build the unit test program.                         |   ON    |
 | Template_AUTO_RUN_TEST      | Automatically run the test program.                  |   OFF   |
-| Template_USE_STATIC_RUNTIME | Build with the MultiThreaded(Debug) runtime library. |   On    |
+| Template_USE_STATIC_RUNTIME | Build with the MultiThreaded(Debug) runtime library. |   ON    |
