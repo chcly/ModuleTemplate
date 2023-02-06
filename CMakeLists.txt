@@ -19,7 +19,7 @@ list(APPEND CMAKE_MODULE_PATH
   ${Template_SOURCE_DIR}/CMake 
   ${Template_SOURCE_DIR}/CMake/Modules
 )
-include(Configure)
+include(${Template_SOURCE_DIR}/CMake/Configure.cmake)
 if (NOT Configure_SUCCEEDED)
    return()
 endif()
@@ -44,12 +44,10 @@ endif()
 add_subdirectory(Source)
 
 if (Template_BUILD_TEST)
-    add_subdirectory(${GTEST_DIR})
+    if (NOT Template_ExternalTarget)
+        add_gtest_source(Extern/ThirdParty)
+    endif()
 
     set(TargetGroup Units)
-    if (TargetFolders)
-        set_target_properties(gtest_main PROPERTIES FOLDER "${TargetGroup}")
-        set_target_properties(gtest      PROPERTIES FOLDER "${TargetGroup}")
-    endif()
     add_subdirectory(Test)
 endif()

@@ -24,6 +24,8 @@ if (NOT GitUpdate_SUCCESS)
 endif()
 
 include(StaticRuntime)
+include(GTestUtils)
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 option(Template_BUILD_TEST          "Build the unit test program." ON)
@@ -37,14 +39,8 @@ else()
 endif()
 
 
-
-set(BUILD_GMOCK   OFF CACHE BOOL "" FORCE)
-set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
-set(GTEST_DIR     ${Template_SOURCE_DIR}/Test/googletest)
-set(GTEST_INCLUDE ${Template_SOURCE_DIR}/Test/googletest/googletest/include)
-set(GTEST_LIBRARY gtest_main)
-
-
+configure_gtest(${Template_SOURCE_DIR}/Test/googletest 
+                ${Template_SOURCE_DIR}/Test/googletest/googletest/include)
 
 
 set(Configure_SUCCEEDED TRUE)
