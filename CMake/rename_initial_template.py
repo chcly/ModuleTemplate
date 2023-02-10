@@ -8,6 +8,7 @@ def genTemplates():
     global templatename
 
     files = [
+        "README.md",
         "CMakeLists.txt",
         "Jenkinsfile",
         ".github/workflows/autobuild.yml",
@@ -17,7 +18,7 @@ def genTemplates():
         "Test/CMakeLists.txt",
     ]
 
-    patterns = [".yml", ".txt", ".cmake", "Jenkinsfile"]
+    patterns = [".yml", ".txt", ".cmake", "Jenkinsfile", ".md"]
     root = os.getcwd()
 
     for file in files:
