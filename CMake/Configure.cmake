@@ -29,7 +29,7 @@ include(GTestUtils)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 option(Template_BUILD_TEST          "Build the unit test program." ON)
-option(Template_AUTO_RUN_TEST       "Automatically run the test program." OFF)
+option(Template_AUTO_RUN_TEST       "Automatically run the test program." ON)
 option(Template_USE_STATIC_RUNTIME  "Build with the MultiThreaded(Debug) runtime library." ON)
 
 if (Template_USE_STATIC_RUNTIME)
