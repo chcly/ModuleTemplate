@@ -1,11 +1,11 @@
 #include <cstdio>
 #include "gtest/gtest.h"
-#include "TestDirectory.h"
+#include "ThisDir.h"
 
 GTEST_TEST(Test1, AlwaysTrue)
 {
     puts(ABSOLUTE_TEST_DIRECTORY);
-    puts(GetTestFilePath("inp.ans"));
+    puts(TestFile("inp.ans"));
     EXPECT_EQ(1, 1);
 }
 
