@@ -19,7 +19,7 @@ list(APPEND CMAKE_MODULE_PATH
   ${Template_SOURCE_DIR}/CMake 
   ${Template_SOURCE_DIR}/CMake/Modules
 )
-include(${Template_SOURCE_DIR}/CMake/Configure.cmake)
+include(Configure)
 if (NOT Configure_SUCCEEDED)
    return()
 endif()
@@ -37,7 +37,7 @@ else()
     set(TargetName Template)
     set(TargetGroup )
 
-    set(Template_INCLUDE  ${Template_SOURCE_DIR}/Source)
+    set(Template_INCLUDE  ${Template_SOURCE_DIR})
     set(Template_LIBRARY  ${TargetName})
 endif()
 

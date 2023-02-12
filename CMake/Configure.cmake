@@ -25,6 +25,7 @@ endif()
 
 include(StaticRuntime)
 include(GTestUtils)
+include(ExternalTarget)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
