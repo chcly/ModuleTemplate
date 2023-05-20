@@ -19,6 +19,7 @@ Defines a submodule template.
 + The files [gitupdate.py](gitupdate.py) or [gitupdate.bat](gitupdate.bat) help to automate the process of cloning embedded projects.
 + The file [rename_initial_template.py](CMake/rename_initial_template.py) swaps occurrences of `Template` in the project.
 
+
 ## Testing
 
 The testing directory is setup to work with [googletest](https://github.com/google/googletest).
