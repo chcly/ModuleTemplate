@@ -1,13 +1,13 @@
-# Template
+# ModuleTemplate
 
 Defines a submodule template.
 
 ## Layout structure
 
 + Template
-  + CMake/Modules - Provides the link to common modules.
+  + CMake/Modules - Provides the submodule link to [CMakeModules](https://github.com/chcly/CMakeModules).
     + [CMake/Modules/ExternalTarget.cmake](https://github.com/chcly/CMakeModules/blob/master/ExternalTarget.cmake#L69) - Provides the means to embed modules.
-  + Test/googletest - Provides the link to googletest
+  + Test/googletest - Provides the submodule link to [googletest](https://github.com/chcly/googletest).
   + [Source](Source) - Should contain the module contents.
   + [Test](Test) - Contains the setup to begin testing the source directory.
 
@@ -28,16 +28,16 @@ Defines a submodule template.
 
 ## Testing
 
-The testing directory is setup to work with [googletest](https://github.com/google/googletest).
+The Test directory is setup to work with [googletest](https://github.com/google/googletest).
 
 ## Building
 
-Building with CMake and Make
+Building with CMake and Make.
 
 ```sh
 mkdir build
 cd build
-cmake ..
+cmake .. -DTemplate_BUILD_TEST=ON -DTemplate_AUTO_RUN_TEST=ON
 make
 ```
 
