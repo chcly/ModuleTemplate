@@ -24,7 +24,7 @@ Defines a submodule template.
 + The Source directory should be renamed to the Module name.
 + The variables `Template_INCLUDE` and `Template_LIBRARY` point to the  contents of the Source directory.
 + Defining a external target switches the include variable to its root source directory.
-+ Project level includes a found relative to the module's Source directory name `#include "Source/SomeFile.h"`.
++ Project level includes are found relative to the module's Source directory name `#include "Source/SomeFile.h"`.
 
 ## Testing
 
