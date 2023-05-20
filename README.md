@@ -5,9 +5,9 @@ Defines a submodule template.
 ## Layout structure
 
 + Template
-  + [CMake/Modules](CMake/Modules) - Provides the link to common modules.
+  + CMake/Modules - Provides the link to common modules.
     + [CMake/Modules/ExternalTarget.cmake](https://github.com/chcly/CMakeModules/blob/master/ExternalTarget.cmake#L69) - Provides the means to embed modules.
-  + [Test/googletest](Test/googletest) - Provides the link to googletest
+  + Test/googletest - Provides the link to googletest
   + [Source](Source) - Should contain the module contents.
   + [Test](Test) - Contains the setup to begin testing the source directory.
 
