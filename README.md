@@ -19,6 +19,12 @@ Defines a submodule template.
 + The files [gitupdate.py](gitupdate.py) or [gitupdate.bat](gitupdate.bat) help to automate the process of cloning embedded projects.
 + The file [rename_initial_template.py](CMake/rename_initial_template.py) swaps occurrences of `Template` in the project.
 
+## Naming
+
++ The Source directory should be renamed to the Module name.
++ The variables `Template_INCLUDE` and `Template_LIBRARY` point to the  contents of the Source directory.
++ Defining a external target switches the include variable to its root source directory.
++ Project level includes a found relative to the module's Source directory name `#include "Source/SomeFile.h"`.
 
 ## Testing
 
