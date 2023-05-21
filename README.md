@@ -32,7 +32,7 @@ The Test directory is setup to work with [googletest](https://github.com/google/
 
 ## Building
 
-![GitHub CI](https://github.com/chcly/Test/actions/workflows/autobuild.yml/badge.svg)
+![GitHub CI](https://github.com/chcly/ModuleTemplate/actions/workflows/autobuild.yml/badge.svg)
 
 
 ```sh
